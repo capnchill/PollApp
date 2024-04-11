@@ -7,7 +7,7 @@
 <div class="my-4 grid grid-cols-2 gap-4">
 	{#each polls as poll (poll.id)}
 		<div class="w-[450px]">
-			<PollCard {poll} on:deletePoll></PollCard>
+			<PollCard {poll} on:deletePoll on:addtoVoteA on:addtoVoteB></PollCard>
 		</div>
 	{:else}
 		<div>

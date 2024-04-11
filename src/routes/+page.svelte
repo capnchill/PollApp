@@ -35,6 +35,18 @@
 		let filteredPoll = polls.filter((pollone) => pollone.id !== poll.id);
 		polls = filteredPoll;
 	}
+
+	function addtoVoteA(event) {
+		let pollId = event.detail.id;
+		let pollIndex = polls.findIndex((poll) => poll.id === pollId);
+		polls[pollIndex].voteA += 1;
+	}
+
+	function addtoVoteB(event) {
+		let pollId = event.detail.id;
+		let pollIndex = polls.findIndex((poll) => poll.id === pollId);
+		polls[pollIndex].voteB += 1;
+	}
 </script>
 
 <Header />
@@ -45,7 +57,12 @@
 	<div>
 		{#if activeItem === 'Current Poll'}
 			<div>
-				<Polllist {polls} on:deletePoll={deletePoll} />
+				<Polllist
+					{polls}
+					on:deletePoll={deletePoll}
+					on:addtoVoteA={addtoVoteA}
+					on:addtoVoteB={addtoVoteB}
+				/>
 			</div>
 		{:else}
 			<div class="mt-4">

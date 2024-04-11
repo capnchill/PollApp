@@ -9,6 +9,17 @@
 	function deleteHandler() {
 		dispatch('deletePoll', poll);
 	}
+
+	$: votePercentA = Math.round((poll.voteA / totalVotes) * 100);
+	$: votePercentB = Math.round((poll.voteB / totalVotes) * 100);
+
+	function markVoteA() {
+		dispatch('addtoVoteA', poll);
+	}
+
+	function markVoteB() {
+		dispatch('addtoVoteB', poll);
+	}
 </script>
 
 <div class="p-4 shadow-xl">
@@ -19,13 +30,23 @@
 
 	<div class="mb-4">
 		<div
-			class="relative mb-2 flex bg-red-100 px-4 py-2 before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-red-800"
+			class="relative mb-2 flex cursor-pointer px-4 py-2 before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-red-800"
+			on:click={markVoteA}
 		>
+			<div
+				class="absolute left-0 top-0 -z-10 h-full bg-red-200"
+				style="width: {votePercentA}%"
+			></div>
 			<p>{poll.answerA} ({poll.voteA} votes)</p>
 		</div>
 		<div
-			class="relative flex bg-green-100 px-4 py-2 before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-green-800"
+			class="relative flex cursor-pointer px-4 py-2 before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-green-800"
+			on:click={markVoteB}
 		>
+			<div
+				class="absolute left-0 top-0 -z-10 h-full bg-green-200"
+				style="width: {votePercentB}%"
+			></div>
 			<p>{poll.answerB} ({poll.voteB} votes)</p>
 		</div>
 	</div>

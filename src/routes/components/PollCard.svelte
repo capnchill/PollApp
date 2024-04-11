@@ -5,10 +5,17 @@
 
 	$: totalVotes = poll.voteA + poll.voteB;
 
+	// Alternate Approach to directly updating the store value
+	// function deleteHandler() {
+	// 	let pollIndex = $PollStore.findIndex((Poll) => Poll.id === poll.id);
+	// 	$PollStore.splice(pollIndex, 1);
+	// 	$PollStore = $PollStore;
+	// }
+
 	function deleteHandler() {
-		let pollIndex = $PollStore.findIndex((Poll) => Poll.id === poll.id);
-		$PollStore.splice(pollIndex, 1);
-		$PollStore = $PollStore;
+		PollStore.update((currentPolls) => {
+			return currentPolls.filter((Poll) => Poll.id !== poll.id);
+		});
 	}
 
 	$: votePercentA = Math.round((poll.voteA / totalVotes) * 100);

@@ -1,3 +1,8 @@
+# some photos from the proj![Screenshot 2024-04-11 at 8 00 51 PM](https://github.com/capnchill/PollApp/assets/106017787/0958472f-1929-4b19-8e4d-2f29a4f30a3c)
+![Screenshot 2024-04-11 at 8 01 03 PM](https://github.com/capnchill/PollApp/assets/106017787/5bf894f5-dfd5-430b-8246-2a62b710c5bb)
+ect
+
+
 # create-svelte
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).

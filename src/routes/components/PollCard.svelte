@@ -19,8 +19,8 @@
 		});
 	}
 
-	$: votePercentA = Math.round((poll.voteA / totalVotes) * 100);
-	$: votePercentB = Math.round((poll.voteB / totalVotes) * 100);
+	$: votePercentA = Math.round((poll.voteA / totalVotes) * 100) || 0;
+	$: votePercentB = Math.round((poll.voteB / totalVotes) * 100) || 0;
 
 	// tweened percentages
 	let tweenedA = tweened(0);

@@ -2,6 +2,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import Button from './shared/Button.svelte';
 	import { generateRandomId } from './utils';
+	import PollStore from '../../stores/Pollstore';
 
 	let fields = {
 		question: '',
@@ -49,7 +50,11 @@
 				voteB: 0,
 				id: generateRandomId()
 			};
-			dispatch('addPoll', poll);
+			dispatch('addPoll');
+
+			PollStore.update((data) => {
+				return [...data, poll];
+			});
 		}
 	}
 </script>

@@ -1,11 +1,10 @@
 <script>
+	import PollStore from '../../stores/Pollstore';
 	import PollCard from './PollCard.svelte';
-
-	export let polls;
 </script>
 
 <div class="my-4 grid grid-cols-2 gap-4">
-	{#each polls as poll (poll.id)}
+	{#each $PollStore as poll (poll.id)}
 		<div class="w-[450px]">
 			<PollCard {poll} on:deletePoll on:addtoVoteA on:addtoVoteB></PollCard>
 		</div>

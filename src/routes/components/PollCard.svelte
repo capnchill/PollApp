@@ -1,24 +1,27 @@
 <script>
-	import { createEventDispatcher } from 'svelte';
+	import PollStore from '../../stores/Pollstore';
 
 	export let poll;
+
 	$: totalVotes = poll.voteA + poll.voteB;
 
-	let dispatch = createEventDispatcher();
-
 	function deleteHandler() {
-		dispatch('deletePoll', poll);
+		let pollIndex = $PollStore.findIndex((Poll) => Poll.id === poll.id);
+		$PollStore.splice(pollIndex, 1);
+		$PollStore = $PollStore;
 	}
 
 	$: votePercentA = Math.round((poll.voteA / totalVotes) * 100);
 	$: votePercentB = Math.round((poll.voteB / totalVotes) * 100);
 
 	function markVoteA() {
-		dispatch('addtoVoteA', poll);
+		let pollIndex = $PollStore.findIndex((Poll) => Poll.id === poll.id);
+		$PollStore[pollIndex].voteA += 1;
 	}
 
 	function markVoteB() {
-		dispatch('addtoVoteB', poll);
+		let pollIndex = $PollStore.findIndex((Poll) => Poll.id === poll.id);
+		$PollStore[pollIndex].voteB += 1;
 	}
 </script>
 

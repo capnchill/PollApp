@@ -12,40 +12,8 @@
 		activeItem = event.detail.item;
 	}
 
-	let polls = [
-		{
-			id: 1,
-			question: 'Marvel vs DC Super heroes',
-			answerA: 'Marvel',
-			answerB: 'DC',
-			voteA: 2,
-			voteB: 3
-		}
-	];
-	function addPoll(event) {
-		let poll = event.detail;
-		console.log(poll);
-		polls.push(poll);
-		polls = polls;
+	function addPoll() {
 		activeItem = 'Current Poll';
-	}
-
-	function deletePoll(event) {
-		let poll = event.detail;
-		let filteredPoll = polls.filter((pollone) => pollone.id !== poll.id);
-		polls = filteredPoll;
-	}
-
-	function addtoVoteA(event) {
-		let pollId = event.detail.id;
-		let pollIndex = polls.findIndex((poll) => poll.id === pollId);
-		polls[pollIndex].voteA += 1;
-	}
-
-	function addtoVoteB(event) {
-		let pollId = event.detail.id;
-		let pollIndex = polls.findIndex((poll) => poll.id === pollId);
-		polls[pollIndex].voteB += 1;
 	}
 </script>
 
@@ -57,12 +25,7 @@
 	<div>
 		{#if activeItem === 'Current Poll'}
 			<div>
-				<Polllist
-					{polls}
-					on:deletePoll={deletePoll}
-					on:addtoVoteA={addtoVoteA}
-					on:addtoVoteB={addtoVoteB}
-				/>
+				<Polllist />
 			</div>
 		{:else}
 			<div class="mt-4">
